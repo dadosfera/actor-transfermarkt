@@ -387,6 +387,11 @@ Apify.main(async () => {
                     7,
                 ]);
                 await Apify.pushData(result);
+            } else if (request.url.match(/\/leistungsdatendetails\/spieler\//)) {
+                const result = Object.assign(rObj, {
+                    data: await extractTable('result', page, '#yw1 table.items'),
+                })
+                await Apify.pushData(result)
             } else if (request.url.match(/\/verein\//)) {
                 if (
                     input.extractOnly
